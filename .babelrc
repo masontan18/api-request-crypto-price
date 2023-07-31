@@ -1,0 +1,16 @@
+{
+    "env": {
+        "test": {
+            "plugins": [
+                "@babel/plugin-transform-modules-commonjs"
+            ]
+        }
+    }
+}
+
+//package.json due to npm init (ready to use third party libraries)
+//.tools-version due to setting local nodejs
+//.gitignore to prevent pushing file to remote repo (GitHub)
+//.env due to using third party library ("dotenv") to store credentials
+//node_modules due to install third party libraries stored here
+//coverage due to jest test --coverage feature to see how many percentage of the file is being tested
