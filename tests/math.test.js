@@ -6,7 +6,7 @@ test("Returns the correct sum value", () => {
 
 //FORMAT in .test.js for unit test and integration test
 // test("description of this test", anonymous function or could be anonoymous asdf function storing a phase)
-// that phase should be: expect(A).toBe(B:things beind return); meaning to say we are testing a function that supposed to return something only, if that function return nothing, we can test via functionality test only, not unit and integration test
+// that phase should be: expect(A).toBe(B:things beind return); meaning to say we are testing a function that supposed to return something only. if that function is not return anything but console.log, we can test also. Refer index.test.js
 // We never want to use live data such as data from server (API) or returned value of other function. We will mock this live data into dummy data
 // So when we are going to use mock (jest.mock or jest.fn only, excluded global.fetch which is for mocking API response object), we need to use "export" syntax and require("") instead of using "import" syntax, require("") have to be used inside the second parameter of test
 // Take note: We can use "export" syntax (same line or separate line) together with require(""), see example in binanceU.test.js and binanceU.js. The require("") is an object storing all the export, declare a new object named to store it and use. We are using this export-require way only in test file where we want to use mock such as jest.mock and jest.fn (the require("") have to be done inside second parameter (function) of test)
@@ -44,5 +44,5 @@ test("Returns the correct sum value", () => {
 //TYPES OF TEST (Which one we write more? Answer: Unit Test > Integration Test > Functional Test)
 // 1. Unit Test as what we doing above. It is a fully isolated function just taking input as parameter (We don't have to mock things because we can just test the function with a particular parameter straight away such as add(1,3))
 // 2. Integration Test: the function we are testing depends on live data such as result of another function, data from API or third party server (that function not using this live data as parameter, so we cannot simply put a particular parameter to test, have to mock something in this case)
-// 3. functional test is test from the perspective of a user such as after clicking the button and what should happen next (the function is not meant to return something so cannot be tested in unit and integration test)
+// 3. functional test is test from the perspective of a user such as after clicking the button and what should happen next (the function is not meant to return or console.log something so cannot be tested in unit and integration test)
 

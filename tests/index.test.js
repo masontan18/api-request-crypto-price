@@ -2,6 +2,7 @@ beforeEach(() => {
   jest.resetModules(); //reset module mocks before each test (Good practice to put on all test file)
 });
 
+//MOCK ASYNC FUNCTION (resolved value); The function not meant to return something but console.log
 test("Check the console result", async () => {
   const main = require("../index.js");
   const lunoM = require("../lib/lunoM.js");
@@ -32,7 +33,7 @@ test("Check the console result", async () => {
   console.log = jest.fn(() => undefined); //replaces the real console.log implementation with a mock function that does nothing (returns undefined).
   // The purpose of this mock is to track if and how the console.log method is called during the test, without actually logging anything to the console.
 
-  await main.result();
+  await main.result(); //call the tested function which is result from index.js
 
   expect(console.log).toHaveBeenCalledWith(
     `BTCMYR price on Luno:        MYR ${MOCK_LUNOM}`
