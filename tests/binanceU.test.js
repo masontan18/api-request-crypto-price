@@ -34,7 +34,7 @@ test("Returns price if Binance request successful", async () => {
     };
   });
 
-  expect(await fromBinanceU.binanceU()).toBe(MOCK_PRICE);
+  expect(await fromBinanceU.binanceU("BTC")).toBe(MOCK_PRICE);
 });
 
 test("Returns price if Binance request unsuccessful", async () => {
@@ -56,5 +56,5 @@ test("Returns price if Binance request unsuccessful", async () => {
     };
   });
 
-  expect(await fromBinanceU.binanceU()).toBe("Something is wrong here (Retrieve price from Binance)");
+  expect(await fromBinanceU.binanceU("BTC")).toBe("Something is wrong here (Retrieve price from Binance)");
 });

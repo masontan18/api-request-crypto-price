@@ -11,7 +11,7 @@ test("calculates the Conversion to USD from MYR if successful", async () => {
   lunoM.fromLunoM = jest.fn().mockResolvedValue(100); //export let works with require(""), same as export require(""), just that using the name declared via let instead of the original function name
   fromMyrConvert.myrConvert = jest.fn().mockResolvedValue(50);
 
-  expect(await fromLunoU.lunoU()).toBe(2);
+  expect(await fromLunoU.lunoU("BTC")).toBe(2);
 });
 
 test("calculates the Conversion to USD from MYR if unsuccessful", async () => {
@@ -22,5 +22,5 @@ test("calculates the Conversion to USD from MYR if unsuccessful", async () => {
   lunoM.fromLunoM = jest.fn().mockResolvedValue("hi"); 
   fromMyrConvert.myrConvert = jest.fn().mockResolvedValue(50);
 
-  expect(await fromLunoU.lunoU()).toBe("Something is wrong here (MYR convert to USD)");
+  expect(await fromLunoU.lunoU("BTC")).toBe("Something is wrong here (MYR convert to USD)");
 });

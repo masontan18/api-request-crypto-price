@@ -11,6 +11,10 @@ test("Check the console result", async () => {
   const fromBinanceU = require("../lib/binanceU.js");
   const fromPriceD = require("../lib/priceD.js");
   const fromPercentageD = require("../lib/percentageD.js");
+  const fromPromptAsk = require("../lib/promptAsk.js")
+
+  const MOCK_CRYPTO = "BTC"
+  fromPromptAsk.promptAsk = jest.fn().mockResolvedValue(MOCK_CRYPTO)
 
   const MOCK_LUNOM = 100000;
   lunoM.fromLunoM = jest.fn().mockResolvedValue(MOCK_LUNOM);
@@ -36,17 +40,17 @@ test("Check the console result", async () => {
   await main.result(); //call the tested function which is result from index.js
 
   expect(console.log).toHaveBeenCalledWith(
-    `BTCMYR price on Luno:        MYR ${MOCK_LUNOM}`
+    `${MOCK_CRYPTO}MYR price on Luno:        MYR ${MOCK_LUNOM}`
   ); //This is the test assertion. It uses expect from Jest
   // to verify that the console.log method was called with the expected message as an argument.
   expect(console.log).toHaveBeenCalledWith(
     `USDMYR:                      ${MOCK_RATE}`
   );
   expect(console.log).toHaveBeenCalledWith(
-    `BTCUSD price on Luno:        USD ${MOCK_LUNOU}`
+    `${MOCK_CRYPTO}USD price on Luno:        USD ${MOCK_LUNOU}`
   );
   expect(console.log).toHaveBeenCalledWith(
-    `BTCBUSD price on Binance:    USD ${MOCK_BINANCEU}`
+    `${MOCK_CRYPTO}BUSD price on Binance:    USD ${MOCK_BINANCEU}`
   );
   expect(console.log).toHaveBeenCalledWith(
     `Price Difference:            USD ${MOCK_PRICED}`
