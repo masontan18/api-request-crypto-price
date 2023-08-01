@@ -13,7 +13,7 @@ test("calculates the dollar difference between BTCUSD from Luno and Binance if s
   fromLunoU.lunoU = jest.fn().mockResolvedValue(100);
   fromBinanceU.binanceU = jest.fn().mockResolvedValue(70);
 
-  expect(await fromPriceDifferent.priceD()).toBe(30);
+  expect(await fromPriceDifferent.priceD("BTC")).toBe(30);
 });
 
 test("calculates the dollar difference between BTCUSD from Luno and Binance if unsuccessful", async () => {
@@ -24,5 +24,5 @@ test("calculates the dollar difference between BTCUSD from Luno and Binance if u
   fromLunoU.lunoU = jest.fn().mockResolvedValue("Hi");
   fromBinanceU.binanceU = jest.fn().mockResolvedValue(70);
 
-  expect(await fromPriceDifferent.priceD()).toBe("Something is wrong here (PriceD)");
+  expect(await fromPriceDifferent.priceD("BTC")).toBe("Something is wrong here (PriceD)");
 });

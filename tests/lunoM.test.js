@@ -16,7 +16,7 @@ test("Returns the BTCMYR from LUNO if successful", async () => {
     })
   );
 
-  expect(await fromLunoM()).toBe(MOCK_PRICE);
+  expect(await fromLunoM("BTC")).toBe(MOCK_PRICE);
 });
 
 test("Returns the Error Message if BTCMYR from LUNO if unsuccessful", async () => {
@@ -30,7 +30,7 @@ test("Returns the Error Message if BTCMYR from LUNO if unsuccessful", async () =
     })
   );
 
-  expect(await fromLunoM()).toBe(
+  expect(await fromLunoM("BTC")).toBe(
     "Something is wrong here (response is not ok)"
   );
 });

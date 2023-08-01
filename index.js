@@ -2,11 +2,12 @@
 import { fromLunoM } from "./lib/lunoM.js"; //using export let (have to import the same variable name as declared in lunoM.js)
 import { myrConvert } from "./lib/myrConvert.js"; //using export (separate line)
 import { lunoU } from "./lib/lunoU.js"; //using export (separate line)
-import { binanceU } from "./lib/binanceU.js" //using export (same line)
+import { binanceU } from "./lib/binanceU.js"; //using export (same line)
 // import fromPriceDifferent from "./lib/priceD.js" //using export default (object based)
-import { priceD } from "./lib/priceD.js" //change to use export due to jest test
+import { priceD } from "./lib/priceD.js"; //change to use export due to jest test
 // import fromPercentageDifferent from "./lib/percentageD.js" //using export default (variable based)
-import { percentageD } from "./lib/percentageD.js" //change to use export due to jest test
+import { percentageD } from "./lib/percentageD.js"; //change to use export due to jest test
+import { promptAsk } from "./lib/promptAsk.js";
 
 //COMMONJS MODULE: (like "export let", use back the { variable name declared } when import; if without {} then it is a new object to store the entire export object, refer to desktop/JS/module1.js)
 // const {fromLunoM} = require("./lunoM.js")
@@ -14,28 +15,37 @@ import { percentageD } from "./lib/percentageD.js" //change to use export due to
 // const {fromLunoU} = require("./lunoU.js")
 
 export async function result() {
+  const pairList = ["BTC", "XRP", "ETH", "ADA", "SOL", "LTC"];
   try {
-    const lunoM = await fromLunoM();
-    const convertMyr = await myrConvert();
-    const uLuno = await lunoU();
-    const fromBinanceU = await binanceU();
-    // const priceDifferent = await fromPriceDifferent.priceD();
-    const priceDifferent = await priceD();
-    // const percentageDifferent = await fromPercentageDifferent();
-    const percentageDifferent = await percentageD();
+    const crypto = await promptAsk();
 
-    console.log(`BTCMYR price on Luno:        MYR ${lunoM}`);
-    console.log(`USDMYR:                      ${convertMyr}`);
-    console.log(`BTCUSD price on Luno:        USD ${uLuno}`);
-    console.log(`BTCBUSD price on Binance:    USD ${fromBinanceU}`);
-    console.log(`Price Difference:            USD ${priceDifferent}`)
-    console.log(`Luno premium:                ${(+percentageDifferent).toFixed(4)}%`)
+    if (pairList.includes(crypto)) {
+      const lunoM = await fromLunoM(crypto);
+      const convertMyr = await myrConvert();
+      const uLuno = await lunoU(crypto);
+      const fromBinanceU = await binanceU(crypto);
+      // const priceDifferent = await fromPriceDifferent.priceD();
+      const priceDifferent = await priceD(crypto);
+      // const percentageDifferent = await fromPercentageDifferent();
+      const percentageDifferent = await percentageD(crypto);
+
+      console.log(`${crypto}MYR price on Luno:        MYR ${lunoM}`);
+      console.log(`USDMYR:                      ${convertMyr}`);
+      console.log(`${crypto}USD price on Luno:        USD ${uLuno}`);
+      console.log(`${crypto}BUSD price on Binance:    USD ${fromBinanceU}`);
+      console.log(`Price Difference:            USD ${priceDifferent}`);
+      console.log(
+        `Luno premium:                ${(+percentageDifferent).toFixed(4)}%`
+      );
+    } else {
+      console.log("Please enter a valid CRYPTO");
+    }
+    
   } catch (err) {
     console.log(err);
   }
 }
 result();
-
 
 //Summary
 //1. See ES module vs CommonJS module differences in terms of syntax used for export and import file
