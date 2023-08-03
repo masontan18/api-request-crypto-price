@@ -37,8 +37,10 @@ export async function result() {
       console.log(
         `Luno premium:                ${(+percentageDifferent).toFixed(4)}%`
       );
+      setTimeout(result,1500); //make it a long running process, prompt out again after 1.5s
     } else {
       console.log("Please enter a valid CRYPTO");
+      setTimeout(result,1500);
     }
     
   } catch (err) {
