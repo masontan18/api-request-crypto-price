@@ -5,7 +5,7 @@ Context: For thoses who have used Luno to trade cryptocurrencies, you would noti
 - Retrieve prices from Binance: Use a SDK (node-binance-api)
 - Use async-await
 - Use .env (dotenv)
-      - .env should include 2 variables below: 
+      It should include 2 variables below: 
             YOUR_NAME="apikey"
             API_KEY= <Get Your Own key> via login to APILayer > choose and subscribe "Exchange Rates Data API" > go "Setting" and copy API_KEY
 - All functions tested with JEST
