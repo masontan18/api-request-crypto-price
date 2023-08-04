@@ -4,7 +4,7 @@ Context: For thoses who have used Luno to trade cryptocurrencies, you would noti
 - Retrieve prices from Luno and USDMYR exchange rate from APILayer: Send http requests to respective API
 - Retrieve prices from Binance: Use a SDK (node-binance-api)
 - Use async-await
-- Use .env (It should include 2 variables: YOUR_NAME="apikey" and API_KEY= <Get Your Own key> via login to APILayer > choose and subscribe "Exchange Rates Data API" > go "Setting" and copy API_KEY)
+- Use .env (It should include 2 variables: YOUR_NAME="apikey" and API_KEY="Get Your Own Key" via login to APILayer > choose and subscribe "Exchange Rates Data API" > go "Setting" and copy API_KEY)
 - All functions tested with JEST
 - Refactor done
 - Users can interact with the prompt question by input which crypto to see
