@@ -39,25 +39,20 @@ test("Check the console result", async () => {
 
   await main.result(); //call the tested function which is result from index.js
 
-  expect(console.log).toHaveBeenCalledWith(
-    `${MOCK_CRYPTO}MYR price on Luno:        MYR ${MOCK_LUNOM}`
-  ); //This is the test assertion. It uses expect from Jest
+  const contentLm = MOCK_CRYPTO + "MYR price on Luno:"
+  const contentForex = "USDMYR:"
+  const contentLu = MOCK_CRYPTO + "USD price on Luno:"
+  const contentBu = MOCK_CRYPTO + "BUSD price on Binance:"
+  const contentPriceD = "Price Difference:"
+  const contentPerD = "Luno Premium:"
+
+  expect(console.log).toHaveBeenCalledWith(contentLm.padEnd(30, " ") + "MYR " + MOCK_LUNOM); //This is the test assertion. It uses expect from Jest
   // to verify that the console.log method was called with the expected message as an argument.
-  expect(console.log).toHaveBeenCalledWith(
-    `USDMYR:                      ${MOCK_RATE}`
-  );
-  expect(console.log).toHaveBeenCalledWith(
-    `${MOCK_CRYPTO}USD price on Luno:        USD ${MOCK_LUNOU}`
-  );
-  expect(console.log).toHaveBeenCalledWith(
-    `${MOCK_CRYPTO}BUSD price on Binance:    USD ${MOCK_BINANCEU}`
-  );
-  expect(console.log).toHaveBeenCalledWith(
-    `Price Difference:            USD ${MOCK_PRICED}`
-  );
-  expect(console.log).toHaveBeenCalledWith(
-    `Luno premium:                ${(+MOCK_PERCENTAGED).toFixed(4)}%`
-  );
+  expect(console.log).toHaveBeenCalledWith(contentForex.padEnd(30, " ") + MOCK_RATE);
+  expect(console.log).toHaveBeenCalledWith(contentLu.padEnd(30, " ") + "USD " + MOCK_LUNOU);
+  expect(console.log).toHaveBeenCalledWith(contentBu.padEnd(30, " ") + "USD " + MOCK_BINANCEU);
+  expect(console.log).toHaveBeenCalledWith(contentPriceD.padEnd(30, " ") + "USD " + MOCK_PRICED);
+  expect(console.log).toHaveBeenCalledWith(contentPerD.padEnd(30, " ") + MOCK_PERCENTAGED.toFixed(4) + "%");
 });
 
 //The test assertion checks whether console.log was called with this specific message. If the lunoResult function logs the expected message to the console when executed,
