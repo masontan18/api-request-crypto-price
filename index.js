@@ -15,7 +15,7 @@ import { promptAsk } from "./lib/promptAsk.js";
 // const {fromLunoU} = require("./lunoU.js")
 
 export async function result() {
-  const pairList = ["BTC", "XRP", "ETH", "ADA", "SOL", "LTC"];
+  const pairList = ["BTC", "XRP", "ETH", "ADA", "SOL", "LTC", "BCH", "LINK", "AVAX", "UNI"];
   try {
     const crypto = await promptAsk();
 
@@ -29,17 +29,22 @@ export async function result() {
       // const percentageDifferent = await fromPercentageDifferent();
       const percentageDifferent = await percentageD(crypto);
 
-      console.log(`${crypto}MYR price on Luno:        MYR ${lunoM}`);
-      console.log(`USDMYR:                      ${convertMyr}`);
-      console.log(`${crypto}USD price on Luno:        USD ${uLuno}`);
-      console.log(`${crypto}BUSD price on Binance:    USD ${fromBinanceU}`);
-      console.log(`Price Difference:            USD ${priceDifferent}`);
-      console.log(
-        `Luno premium:                ${(+percentageDifferent).toFixed(4)}%`
-      );
+      const contentLm = crypto + "MYR price on Luno:"
+      const contentForex = "USDMYR:"
+      const contentLu = crypto + "USD price on Luno:"
+      const contentBu = crypto + "BUSD price on Binance:"
+      const contentPriceD = "Price Difference:"
+      const contentPerD = "Luno Premium:"
+
+      console.log(contentLm.padEnd(30, " ") + "MYR " + lunoM);
+      console.log(contentForex.padEnd(30, " ") + convertMyr);
+      console.log(contentLu.padEnd(30, " ") + "USD " + uLuno);
+      console.log(contentBu.padEnd(30, " ") + "USD " + fromBinanceU);
+      console.log(contentPriceD.padEnd(30, " ") + "USD " + priceDifferent);
+      console.log(contentPerD.padEnd(30, " ") + percentageDifferent.toFixed(4) + "%");
       setTimeout(result,1500); //make it a long running process, prompt out again after 1.5s
     } else {
-      console.log("Please enter a valid CRYPTO");
+      console.log("Sorry, please try again with one of the following: BTC, XRP, ETH, ADA, SOL, LTC, BCH, LINK, AVAX, UNI");
       setTimeout(result,1500);
     }
     
